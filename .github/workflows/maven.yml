@@ -42,3 +42,15 @@ jobs:
 
       - name: Gitleaks code scan
         run: gitleaks detect source . -r gitleaks-report.json -f json
+
+      - name: Upload Gitleaks report
+        uses: actions/upload-artifact@v3
+        with:
+          name: gitleaks-report
+          path: gitleaks-report.json
+
+      - name: Show Gitleaks report in logs
+        if: always()
+        run: |
+          echo "===== Gitleaks Report ====="
+          cat gitleaks-report.json || echo "(report not found)"
