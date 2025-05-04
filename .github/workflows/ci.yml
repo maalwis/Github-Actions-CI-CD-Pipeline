@@ -11,7 +11,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-latest]
 
     steps:
       - uses: actions/checkout@v4
@@ -50,8 +50,8 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/my-spring-app
-            ${{ secrets.DOCKERHUB_USERNAME }}/my-spring-app:${{ github.sha }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/my-spring-app:spring-security
+            ${{ secrets.DOCKERHUB_USERNAME }}/my-spring-app:spring-security:${{ github.sha }}
 
       - name: Log out from Docker Hub
         run: docker logout
