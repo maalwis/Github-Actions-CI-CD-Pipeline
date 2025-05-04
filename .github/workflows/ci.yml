@@ -3,8 +3,9 @@ name: Java CI with Maven and Docker
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+
+env:
+  SERVICE_NAME: user-service
 
 jobs:
   compile:
@@ -50,8 +51,8 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/my-spring-app:spring-security
-            ${{ secrets.DOCKERHUB_USERNAME }}/my-spring-app:spring-security:${{ github.sha }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/my-spring-app:${{ env.SERVICE_NAME }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/my-spring-app:${{ env.SERVICE_NAME }}-${{ github.sha }}
 
       - name: Log out from Docker Hub
         run: docker logout
