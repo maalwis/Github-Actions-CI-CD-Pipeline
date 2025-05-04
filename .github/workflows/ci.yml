@@ -50,7 +50,7 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/my-spring-app:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/my-spring-app
             ${{ secrets.DOCKERHUB_USERNAME }}/my-spring-app:${{ github.sha }}
 
       - name: Log out from Docker Hub
