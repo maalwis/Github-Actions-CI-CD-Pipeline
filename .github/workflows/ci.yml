@@ -53,6 +53,7 @@ jobs:
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/my-spring-app:${{ env.SERVICE_NAME }}
             ${{ secrets.DOCKERHUB_USERNAME }}/my-spring-app:${{ env.SERVICE_NAME }}-${{ github.sha }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/my-spring-app:latest
 
       - name: Log out from Docker Hub
         run: docker logout
